@@ -15,6 +15,7 @@ import '../../embed/embed_editor_builder.dart';
 import '../../raw_editor/builders/leading_block_builder.dart';
 import '../box.dart';
 import '../cursor.dart';
+import '../custom_widget_span_builder.dart';
 import '../default_leading_components/leading_components.dart';
 import '../default_styles.dart';
 import '../delegate.dart';
@@ -82,6 +83,7 @@ class EditableTextBlock extends StatelessWidget {
     this.checkBoxReadOnly,
     this.onLaunchUrl,
     this.customStyleBuilder,
+    this.customWidgetSpanBuilder,
     this.customLinkPrefixes = const <String>[],
     this.customLeadingBlockBuilder,
     super.key,
@@ -106,6 +108,7 @@ class EditableTextBlock extends StatelessWidget {
   final ValueChanged<String>? onLaunchUrl;
   final CustomRecognizerBuilder? customRecognizerBuilder;
   final CustomStyleBuilder? customStyleBuilder;
+  final CustomWidgetSpanBuilder? customWidgetSpanBuilder;
   final CursorCont cursorCont;
   final Map<int, int> indentLevelCounts;
   final bool clearIndents;
@@ -190,6 +193,7 @@ class EditableTextBlock extends StatelessWidget {
             embedBuilder: embedBuilder,
             textSpanBuilder: textSpanBuilder,
             customStyleBuilder: customStyleBuilder,
+            customWidgetSpanBuilder: customWidgetSpanBuilder,
             styles: styles!,
             readOnly: readOnly,
             controller: controller,

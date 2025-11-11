@@ -8,6 +8,7 @@ import '../../../editor/embed/embed_editor_builder.dart';
 import '../../../editor/raw_editor/raw_editor.dart';
 import '../../../editor/raw_editor/raw_editor_state.dart';
 import '../../../editor/widgets/cursor.dart';
+import '../../../editor/widgets/custom_widget_span_builder.dart';
 import '../../../editor/widgets/default_styles.dart';
 import '../../../editor/widgets/delegate.dart';
 import '../../../editor/widgets/link.dart';
@@ -59,6 +60,7 @@ class QuillRawEditorConfig {
     this.linkActionPickerDelegate = defaultLinkActionPickerDelegate,
     this.customStyleBuilder,
     this.customRecognizerBuilder,
+    this.customWidgetSpanBuilder,
     this.floatingCursorDisabled = false,
     this.customLinkPrefixes = const <String>[],
     this.dialogTheme,
@@ -361,6 +363,7 @@ class QuillRawEditorConfig {
   final LinkActionPickerDelegate linkActionPickerDelegate;
   final CustomStyleBuilder? customStyleBuilder;
   final CustomRecognizerBuilder? customRecognizerBuilder;
+  final CustomWidgetSpanBuilder? customWidgetSpanBuilder;
   final bool floatingCursorDisabled;
   final List<String> customLinkPrefixes;
 

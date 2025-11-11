@@ -12,23 +12,14 @@
 [![Watch on GitHub][github-forks-badge]][github-forks-link]
 
 [license-badge]: https://img.shields.io/github/license/singerdmx/flutter-quill.svg?style=for-the-badge
-
 [license-link]: ./LICENSE
-
 [prs-badge]: https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=for-the-badge
-
 [prs-link]: https://github.com/singerdmx/flutter-quill/issues
-
 [github-watch-badge]: https://img.shields.io/github/watchers/singerdmx/flutter-quill.svg?style=for-the-badge&logo=github&logoColor=ffffff
-
 [github-watch-link]: https://github.com/singerdmx/flutter-quill/watchers
-
 [github-star-badge]: https://img.shields.io/github/stars/singerdmx/flutter-quill.svg?style=for-the-badge&logo=github&logoColor=ffffff
-
 [github-star-link]: https://github.com/singerdmx/flutter-quill/stargazers
-
 [github-forks-badge]: https://img.shields.io/github/forks/singerdmx/flutter-quill.svg?style=for-the-badge&logo=github&logoColor=ffffff
-
 [github-forks-link]: https://github.com/singerdmx/flutter-quill/network/members
 
 ---
@@ -197,8 +188,8 @@ Check out [Sample Page] for more advanced usage.
 This library utilizes [Quill Delta](https://quilljs.com/docs/delta/) to represent document content.
 The Delta format is a compact and versatile method for describing document changes through a series of operations that denote insertions, deletions, or formatting changes.
 
-* Use `_controller.document.toDelta()` to extract the deltas.
-* Use `_controller.document.toPlainText()` to extract plain text.
+- Use `_controller.document.toDelta()` to extract the deltas.
+- Use `_controller.document.toPlainText()` to extract plain text.
 
 **To save the document**:
 
@@ -241,6 +232,7 @@ The `QuillSimpleToolbar` and `QuillEditor` widgets are both customizable.
 - [🔍 Search](./doc/configurations/search.md)
 - [✂️ Shortcut events](./doc/customizing_shortcuts.md)
 - [🎨 Custom Toolbar](./doc/custom_toolbar.md)
+- [🏷️ Pattern Styling](./doc/configurations/pattern_styling.md) - Automatic detection and styling of patterns (hashtags, mentions, URLs, etc.)
 
 ### 🖋 Font Family
 
@@ -275,19 +267,21 @@ package provide implementations for image and video embed blocks.
 
 Available Packages for Conversion
 
-| Package | Description |
-| ------- | ----------- |
-| [`vsc_quill_delta_to_html`](https://pub.dev/packages/vsc_quill_delta_to_html) | Converts **Delta** to **HTML**. |
-| [`flutter_quill_delta_from_html`](https://pub.dev/packages/flutter_quill_delta_from_html) | Converts **HTML** to **Delta**. |
-| [`flutter_quill_to_pdf`](https://pub.dev/packages/flutter_quill_to_pdf) | Converts **Delta** to **PDF**. |
-| [`markdown_quill`](https://pub.dev/packages/markdown_quill) | Converts **Markdown** to **Delta** and vice versa. |
+| Package                                                                                       | Description                                                                                                            |
+| --------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------- |
+| [`vsc_quill_delta_to_html`](https://pub.dev/packages/vsc_quill_delta_to_html)                 | Converts **Delta** to **HTML**.                                                                                        |
+| [`flutter_quill_delta_from_html`](https://pub.dev/packages/flutter_quill_delta_from_html)     | Converts **HTML** to **Delta**.                                                                                        |
+| [`flutter_quill_to_pdf`](https://pub.dev/packages/flutter_quill_to_pdf)                       | Converts **Delta** to **PDF**.                                                                                         |
+| [`markdown_quill`](https://pub.dev/packages/markdown_quill)                                   | Converts **Markdown** to **Delta** and vice versa.                                                                     |
 | [`flutter_quill_delta_easy_parser`](https://pub.dev/packages/flutter_quill_delta_easy_parser) | Converts Quill **Delta** into a simplified document format, making it easier to manage and manipulate text attributes. |
 
 > [!TIP]
 > You might want to convert between **HTML** and **Delta** for some use cases:
 >
 > 1. **Migration**: If you're using an existing system that stores the data in HTML and want to convert the document
+
      data to **Delta**.
+
 > 2. **Sharing**: For example, if you want to share the Document **Delta** somewhere or send it as an email.
 > 3. **Save as**: If your app has a feature that allows converting Documents to other formats.
 > 4. **Rich text pasting**: If you copy some content from websites or apps, and want to paste it into the app.
@@ -306,7 +300,7 @@ The plugin [`quill_native_bridge`](https://pub.dev/packages/quill_native_bridge)
 > [!IMPORTANT]
 > Currently this feature is unsupported on the web.
 > See [issue #1998](https://github.com/singerdmx/flutter-quill/issues/1998) and [issue #2220](https://github.com/singerdmx/flutter-quill/issues/2220)
- for more details.
+> for more details.
 
 ## 🌐 Translation
 
@@ -324,10 +318,10 @@ Currently, the support for testing is limited.
 ## 🤝 Contributing
 
 > [!IMPORTANT]
-> At this time, we prioritize bug fixes and code quality improvements over new features. 
+> At this time, we prioritize bug fixes and code quality improvements over new features.
 > Please refrain from submitting large changes to add new features, as they might
 > not be merged, and exceptions may made.
-> We encourage you to create an issue or reach out beforehand, 
+> We encourage you to create an issue or reach out beforehand,
 > explaining your proposed changes and their rationale for a higher chance of acceptance. Thank you!
 
 We greatly appreciate your time and effort.
@@ -358,17 +352,10 @@ See [Contributing](./CONTRIBUTING.md) for more details.
   contributors, and the creators of the open-source tools we rely on.
 
 [Quill]: https://quilljs.com/docs/formats
-
 [Flutter]: https://github.com/flutter/flutter
-
 [FlutterQuill]: https://pub.dev/packages/flutter_quill
-
 [FlutterQuill Extensions]: https://pub.dev/packages/flutter_quill_extensions
-
 [ReactQuill]: https://github.com/zenoamaro/react-quill
-
 [Youtube Playlist]: https://youtube.com/playlist?list=PLbhaS_83B97vONkOAWGJrSXWX58et9zZ2
-
 [Slack Group]: https://join.slack.com/t/bulletjournal1024/shared_invite/zt-fys7t9hi-ITVU5PGDen1rNRyCjdcQ2g
-
 [Sample Page]: https://github.com/singerdmx/flutter-quill/blob/master/example/lib/main.dart

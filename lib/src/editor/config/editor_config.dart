@@ -14,6 +14,7 @@ import '../raw_editor/builders/leading_block_builder.dart';
 import '../raw_editor/config/events/events.dart';
 import '../raw_editor/config/raw_editor_config.dart';
 import '../raw_editor/raw_editor.dart';
+import '../widgets/custom_widget_span_builder.dart';
 import '../widgets/default_styles.dart';
 import '../widgets/delegate.dart';
 import '../widgets/link.dart' hide linkPrefixes;
@@ -66,6 +67,7 @@ class QuillEditorConfig {
     this.linkActionPickerDelegate = defaultLinkActionPickerDelegate,
     this.customStyleBuilder,
     this.customRecognizerBuilder,
+    this.customWidgetSpanBuilder,
     this.floatingCursorDisabled = false,
     this.textSelectionControls,
     this.customShortcuts,
@@ -369,6 +371,7 @@ class QuillEditorConfig {
   final EmbedBuilder? unknownEmbedBuilder;
   final CustomStyleBuilder? customStyleBuilder;
   final CustomRecognizerBuilder? customRecognizerBuilder;
+  final CustomWidgetSpanBuilder? customWidgetSpanBuilder;
 
   final TextSpanBuilder textSpanBuilder;
 
@@ -512,6 +515,7 @@ class QuillEditorConfig {
     EmbedBuilder? unknownEmbedBuilder,
     CustomStyleBuilder? customStyleBuilder,
     CustomRecognizerBuilder? customRecognizerBuilder,
+    CustomWidgetSpanBuilder? customWidgetSpanBuilder,
     QuillSearchConfig? searchConfig,
     LinkActionPickerDelegate? linkActionPickerDelegate,
     bool? floatingCursorDisabled,
@@ -574,6 +578,8 @@ class QuillEditorConfig {
       customStyleBuilder: customStyleBuilder ?? this.customStyleBuilder,
       customRecognizerBuilder:
           customRecognizerBuilder ?? this.customRecognizerBuilder,
+      customWidgetSpanBuilder:
+          customWidgetSpanBuilder ?? this.customWidgetSpanBuilder,
       searchConfig: searchConfig ?? this.searchConfig,
       linkActionPickerDelegate:
           linkActionPickerDelegate ?? this.linkActionPickerDelegate,

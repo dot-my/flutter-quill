@@ -619,6 +619,7 @@ class QuillRawEditorState extends EditorState
           checkBoxReadOnly: widget.config.checkBoxReadOnly,
           customRecognizerBuilder: widget.config.customRecognizerBuilder,
           customStyleBuilder: widget.config.customStyleBuilder,
+          customWidgetSpanBuilder: widget.config.customWidgetSpanBuilder,
           customLinkPrefixes: widget.config.customLinkPrefixes,
           composingRange: composingRange.value,
         );
@@ -648,6 +649,7 @@ class QuillRawEditorState extends EditorState
       textSpanBuilder: widget.config.textSpanBuilder,
       customStyleBuilder: widget.config.customStyleBuilder,
       customRecognizerBuilder: widget.config.customRecognizerBuilder,
+      customWidgetSpanBuilder: widget.config.customWidgetSpanBuilder,
       styles: _styles!,
       readOnly: widget.config.readOnly,
       controller: controller,

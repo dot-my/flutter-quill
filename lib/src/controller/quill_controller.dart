@@ -20,6 +20,7 @@ import '../editor/raw_editor/raw_editor_state.dart';
 import '../editor_toolbar_controller_shared/clipboard/clipboard_service_provider.dart';
 import 'clipboard/quill_controller_paste.dart';
 import 'clipboard/quill_controller_rich_paste.dart';
+import 'pattern_attribute_handler.dart';
 import 'quill_controller_config.dart';
 
 typedef ReplaceTextCallback = bool Function(int index, int len, Object? data);
@@ -37,7 +38,15 @@ class QuillController extends ChangeNotifier {
     this.onSelectionChanged,
     this.readOnly = false,
   })  : _document = document,
-        _selection = selection;
+        _selection = selection {
+    // Initialize pattern attribute handler if patterns are configured
+    if (config.patternMatchers.isNotEmpty) {
+      _patternAttributeHandler = PatternAttributeHandler(
+        document: _document,
+        patternMatchers: config.patternMatchers,
+      );
+    }
+  }
 
   factory QuillController.basic({
     QuillControllerConfig config = const QuillControllerConfig(),
@@ -49,6 +58,9 @@ class QuillController extends ChangeNotifier {
       );
 
   final QuillControllerConfig config;
+
+  /// Pattern attribute handler for automatic pattern-based attribute application
+  PatternAttributeHandler? _patternAttributeHandler;
 
   /// Document managed by this controller.
   Document _document;
@@ -81,6 +93,15 @@ class QuillController extends ChangeNotifier {
   set document(Document doc) {
     _document = doc;
     _setDocumentSearchProperties();
+
+    // Reinitialize pattern handler with new document
+    _patternAttributeHandler?.dispose();
+    if (config.patternMatchers.isNotEmpty) {
+      _patternAttributeHandler = PatternAttributeHandler(
+        document: _document,
+        patternMatchers: config.patternMatchers,
+      );
+    }
 
     // Prevent the selection from
     _selection = const TextSelection(baseOffset: 0, extentOffset: 0);
@@ -455,6 +476,7 @@ class QuillController extends ChangeNotifier {
   void dispose() {
     if (!_isDisposed) {
       document.close();
+      _patternAttributeHandler?.dispose();
     }
 
     _isDisposed = true;

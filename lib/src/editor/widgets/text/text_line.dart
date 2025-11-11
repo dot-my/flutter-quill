@@ -16,6 +16,7 @@ import '../../../common/utils/platform.dart';
 import '../../../document/nodes/container.dart' as container_node;
 import '../../../document/nodes/leaf.dart' as leaf;
 import '../box.dart';
+import '../custom_widget_span_builder.dart';
 import '../delegate.dart';
 import '../keyboard_listener.dart';
 import '../proxy.dart';
@@ -35,6 +36,7 @@ class TextLine extends StatefulWidget {
     this.textDirection,
     this.customStyleBuilder,
     this.customRecognizerBuilder,
+    this.customWidgetSpanBuilder,
     this.customLinkPrefixes = const <String>[],
     super.key,
   });
@@ -48,6 +50,7 @@ class TextLine extends StatefulWidget {
   final QuillController controller;
   final CustomStyleBuilder? customStyleBuilder;
   final CustomRecognizerBuilder? customRecognizerBuilder;
+  final CustomWidgetSpanBuilder? customWidgetSpanBuilder;
   final ValueChanged<String>? onLaunchUrl;
   final LinkActionPicker linkActionPicker;
   final List<String> customLinkPrefixes;
@@ -529,6 +532,30 @@ class _TextLineState extends State<TextLine> {
     }
 
     final recognizer = _getRecognizer(node, isLink);
+
+    // Check if this node has custom attributes that should use WidgetSpan
+    if (widget.customWidgetSpanBuilder != null) {
+      final customAttr = _getCustomAttributeForWidgetSpan(nodeStyle);
+      if (customAttr != null) {
+        // Calculate cursor position within this text node
+        final cursorPosition = _getCursorPositionInNode(textNode);
+        
+        final widgetSpan = widget.customWidgetSpanBuilder!(
+          context,
+          WidgetSpanContext(
+            text: textNode.value,
+            attribute: customAttr,
+            textStyle: style,
+            recognizer: recognizer,
+            cursorPositionInText: cursorPosition,
+          ),
+        );
+        if (widgetSpan != null) {
+          return widgetSpan;
+        }
+      }
+    }
+
     return textSpanBuilder(
       context,
       textNode,
@@ -537,6 +564,69 @@ class _TextLineState extends State<TextLine> {
       style,
       recognizer,
     );
+  }
+
+  /// Get the first custom attribute from node style that is not a built-in attribute
+  Attribute? _getCustomAttributeForWidgetSpan(Style nodeStyle) {
+    // List of built-in attribute keys that should not be treated as custom
+    const builtInKeys = {
+      'bold',
+      'italic',
+      'small',
+      'underline',
+      'strike',
+      'link',
+      'color',
+      'background',
+      'font',
+      'size',
+      'script',
+      'code',
+      'header',
+      'list',
+      'code-block',
+      'blockquote',
+      'align',
+      'direction',
+      'indent',
+      'width',
+      'height',
+      'style',
+      'token',
+      'placeholder',
+      'line-height',
+      'image',
+      'video',
+    };
+
+    for (final attr in nodeStyle.attributes.values) {
+      if (!builtInKeys.contains(attr.key) && attr.value != null) {
+        return attr;
+      }
+    }
+    return null;
+  }
+
+  /// Calculate cursor position within a text node
+  /// Returns the character offset (0-based) if cursor is in this node, null otherwise
+  int? _getCursorPositionInNode(leaf.QuillText textNode) {
+    final selection = widget.controller.selection;
+    
+    // Only handle collapsed cursor (not selection)
+    if (!selection.isCollapsed) {
+      return null;
+    }
+    
+    final cursorOffset = selection.baseOffset;
+    final nodeOffset = textNode.documentOffset;
+    final nodeLength = textNode.length;
+    
+    // Check if cursor is within this node
+    if (cursorOffset >= nodeOffset && cursorOffset < nodeOffset + nodeLength) {
+      return cursorOffset - nodeOffset;
+    }
+    
+    return null;
   }
 
   TextStyle _getInlineTextStyle(Style nodeStyle, DefaultStyles defaultStyles,

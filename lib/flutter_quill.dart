@@ -1,5 +1,6 @@
 library;
 
+export 'src/common/pattern/pattern_matcher.dart';
 export 'src/common/structs/horizontal_spacing.dart';
 export 'src/common/structs/image_url.dart';
 export 'src/common/structs/offset_value.dart';
@@ -25,6 +26,7 @@ export 'src/editor/raw_editor/raw_editor.dart';
 export 'src/editor/raw_editor/raw_editor_state.dart';
 export 'src/editor/style_widgets/style_widgets.dart';
 export 'src/editor/widgets/cursor.dart';
+export 'src/editor/widgets/custom_widget_span_builder.dart';
 export 'src/editor/widgets/default_styles.dart';
 export 'src/editor/widgets/link.dart';
 export 'src/editor/widgets/text/magnifier.dart';

@@ -313,6 +313,7 @@ class QuillEditorState extends State<QuillEditor>
         linkActionPickerDelegate: config.linkActionPickerDelegate,
         customStyleBuilder: config.customStyleBuilder,
         customRecognizerBuilder: config.customRecognizerBuilder,
+        customWidgetSpanBuilder: config.customWidgetSpanBuilder,
         floatingCursorDisabled: config.floatingCursorDisabled,
         customShortcuts: config.customShortcuts,
         customActions: config.customActions,
