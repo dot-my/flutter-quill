@@ -8,13 +8,15 @@ documentation: https://github.com/singerdmx/flutter-quill/tree/master/flutter_qu
 topics: [testing, text, rich-text-editor, flutter-quill]
 
 environment:
-  sdk: '>=3.0.0 <4.0.0'
+  sdk: ">=3.0.0 <4.0.0"
   flutter: ">=1.17.0"
 
 dependencies:
   flutter:
     sdk: flutter
-  flutter_quill: ^11.0.0
+  flutter_quill:
+    git:
+      url: git@github.com:dot-my/flutter-quill.git
   flutter_test:
     sdk: flutter
 
